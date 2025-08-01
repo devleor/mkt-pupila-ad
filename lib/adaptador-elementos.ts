@@ -1,4 +1,4 @@
-// Função para gerar sugestões de posicionamento usando a OpenAI
+// Função para gerar sugestões de posicionamento usando a Anthropic Claude
 export async function gerarSugestoesComIA(elementos: any[], formatoOrigem: any, formatosDestino: any[]): Promise<any> {
   try {
     const response = await fetch("/api/posicionamento-elementos", {

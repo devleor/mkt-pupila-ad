@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { generateText } from "ai";
-import { openai } from "@ai-sdk/openai";
+import { anthropic } from "@ai-sdk/anthropic";
 
 export async function POST(request: Request) {
   try {
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Construir o prompt para a OpenAI
+    // Construir o prompt para a Anthropic Claude
     const prompt = `
       Analise os seguintes elementos de um formato de marketing digital:
       ${JSON.stringify(elementos, null, 2)}
@@ -64,15 +64,15 @@ export async function POST(request: Request) {
       }
     `;
 
-    // Chamar a OpenAI
+    // Chamar a Anthropic Claude
     const { text } = await generateText({
-      model: openai("gpt-4o"),
+      model: anthropic("claude-3-5-sonnet-20241022"),
       prompt: prompt,
       temperature: 0.7,
       maxTokens: 4000,
     });
 
-    console.log("Resposta da OpenAI:", text);
+    console.log("Resposta da Anthropic Claude:", text);
 
     // Processar a resposta
     let sugestoes;
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
       const jsonText = jsonMatch ? jsonMatch[1] || jsonMatch[0] : text;
       sugestoes = JSON.parse(jsonText);
     } catch (error) {
-      console.error("Erro ao processar resposta da OpenAI:", error);
+      console.error("Erro ao processar resposta da Anthropic Claude:", error);
       console.log("Resposta original:", text);
 
       return NextResponse.json(

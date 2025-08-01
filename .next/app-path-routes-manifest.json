@@ -1,0 +1,12 @@
+{
+  "/api/posicionamento-elementos/route": "/api/posicionamento-elementos",
+  "/_not-found/page": "/_not-found",
+  "/campaigns/[id]/editor/page": "/campaigns/[id]/editor",
+  "/campaigns/page": "/campaigns",
+  "/campaigns/new/page": "/campaigns/new",
+  "/campanhas/[id]/editor/debug/page": "/campanhas/[id]/editor/debug",
+  "/campanhas/[id]/editor/page": "/campanhas/[id]/editor",
+  "/campanhas/nova/page": "/campanhas/nova",
+  "/campanhas/page": "/campanhas",
+  "/page": "/"
+}

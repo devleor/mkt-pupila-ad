@@ -1,0 +1,12 @@
+{
+  "/api/posicionamento-elementos/route": "app/api/posicionamento-elementos/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/campaigns/[id]/editor/page": "app/campaigns/[id]/editor/page.js",
+  "/campaigns/page": "app/campaigns/page.js",
+  "/campaigns/new/page": "app/campaigns/new/page.js",
+  "/campanhas/[id]/editor/debug/page": "app/campanhas/[id]/editor/debug/page.js",
+  "/campanhas/[id]/editor/page": "app/campanhas/[id]/editor/page.js",
+  "/campanhas/nova/page": "app/campanhas/nova/page.js",
+  "/campanhas/page": "app/campanhas/page.js",
+  "/page": "app/page.js"
+}
