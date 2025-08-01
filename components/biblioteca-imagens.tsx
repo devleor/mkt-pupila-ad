@@ -12,6 +12,7 @@ interface BibliotecaImagensProps {
 
 export function BibliotecaImagens({ onSelectImage }: BibliotecaImagensProps) {
   const [searchTerm, setSearchTerm] = useState("")
+  const [open, setOpen] = useState(false) // Inicia fechado por padrão
 
   // Lista de imagens da pasta iFood
   const [imagens, setImagens] = useState([])
@@ -102,13 +103,13 @@ export function BibliotecaImagens({ onSelectImage }: BibliotecaImagensProps) {
     : imagens
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" className="w-full">
           Selecionar da Biblioteca
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[700px]">
+      <DialogContent className="sm:max-w-[800px] max-h-[90vh]">
         <DialogHeader>
           <DialogTitle>Biblioteca de Imagens</DialogTitle>
         </DialogHeader>
@@ -121,13 +122,17 @@ export function BibliotecaImagens({ onSelectImage }: BibliotecaImagensProps) {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="grid grid-cols-3 gap-4 max-h-[400px] overflow-y-auto p-1">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[500px] overflow-y-auto p-2">
           {imagensFiltradas.map((imagem) => (
             <div
               key={imagem.id}
               className="relative aspect-square cursor-pointer overflow-hidden rounded-md border hover:border-blue-500 transition-all"
               onClick={() => {
-                onSelectImage(imagem.url)
+                // Garantir URL absoluta para funcionar corretamente
+                const baseUrl = window.location.origin
+                const fullUrl = imagem.url.startsWith('http') ? imagem.url : `${baseUrl}${imagem.url}`
+                onSelectImage(fullUrl)
+                setOpen(false) // Fecha o dialog após selecionar a imagem
               }}
             >
               <img src={imagem.url || "/placeholder.svg"} alt={imagem.alt} className="h-full w-full object-cover" />
